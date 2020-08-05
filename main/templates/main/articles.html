@@ -1,0 +1,73 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+
+    <div class="row responsive z-depth-1 " style="height: auto !important;">
+      
+      <!-- in case there is a need for a video -->
+      <!-- <div class="video-container">
+        <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
+      </div>
+ -->
+
+        <div class="col l8 m12 s12">
+            <div class="container-fluid" align="left" >
+            <h3>{{doctorsDetails.Full_name}}</h3><br>
+            <p style="font-size:70%">Published {{doctorsDetails.date_published}}</p>
+         
+            
+            {{doctorsDetails.main_content|safe}}</br>
+            </div>
+        </div>
+
+        <div class="col s12 m4 l4">
+            <ul class="collapsible popout">
+                {% for doctorsDetails in sidebar %}
+                    {% if forloop.counter0 == this_doc_idx %}
+                        <li class="active">
+                            <div class="collapsible-header">{{doctorsDetails.Full_name}}<br>(currently viewing)</div>
+                        </li>
+                    {% else %}
+                        <li>
+                            <ul class="collection">
+                            <li class="collection-item avatar">
+                              <img src="{{doctorsDetails.ProfilePic.url}}" alt="" class="circle"> 
+                            </li>
+                            </ul> 
+                            <div class="collapsible-header">{{doctorsDetails.Specialize}}</div>
+                            <div class="collapsible-body">
+                                <p><a href="/{{doctorsDetails.doctor_slug}}"><button class="btn waves-effect waves-light right-align" style="background-color:yellow; color:black">Go</button></a></p>
+
+                            </div>
+                        </li>
+
+                        <!-- <ul class="collection">
+                              <li class="collection-item avatar">
+                              <img src="{{doctorsDetails.ProfilePic.url}}" alt="" class="circle"> -->
+                              <!-- <i class="material-icons circle">folder</i> -->
+                                <!-- <span class="title">{{doctorsDetails.Full_name}}</span>
+                          
+                              
+                               <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+
+                             </li>
+                          
+                     </ul> -->
+                    {% endif %}
+                    
+                {% endfor %}
+
+            </ul>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+
